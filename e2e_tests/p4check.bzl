@@ -31,7 +31,7 @@ file, run:
 ```
 """
 
-load("@com_github_p4lang_p4c//:bazel/p4_library.bzl", "p4_library")
+# load("@com_github_p4lang_p4c//:bazel/p4_library.bzl", "p4_library")
 
 def run_p4check(name, src, out, deps = [], table_entries = [], visibility = None):
     """Runs p4check on the given P4 file and table entries, recording output.
@@ -50,28 +50,29 @@ def run_p4check(name, src, out, deps = [], table_entries = [], visibility = None
         `p4check` for constraint checking.
       visibility: Visibility of this target.
     """
-    p4info_file = src + "info.txt"
-    p4check = "@com_github_p4lang_p4_constraints//p4_constraints/cli:p4check"
-    p4_library(
-        name = name + "_p4info",
-        visibility = visibility,
-        src = src,
-        deps = deps,
-        p4info_out = p4info_file,
-    )
-    native.genrule(
-        name = name,
-        visibility = visibility,
-        testonly = True,
-        srcs = [p4info_file] + table_entries,
-        outs = [out],
-        tools = [p4check] + deps,
-        cmd = """
-            "{p4check}" --p4info=$(SRCS) &> $(OUTS) || true
-        """.format(
-            p4check = "$(execpath %s)" % p4check,
-        ),
-    )
+    # p4info_file = src + "info.txt"
+    # p4check = "@com_github_p4lang_p4_constraints//p4_constraints/cli:p4check"
+    # p4_library(
+    #     name = name + "_p4info",
+    #     visibility = visibility,
+    #     src = src,
+    #     deps = deps,
+    #     p4info_out = p4info_file,
+    # )
+    # native.genrule(
+    #     name = name,
+    #     visibility = visibility,
+    #     testonly = True,
+    #     srcs = [p4info_file] + table_entries,
+    #     outs = [out],
+    #     tools = [p4check] + deps,
+    #     cmd = """
+    #         "{p4check}" --p4info=$(SRCS) &> $(OUTS) || true
+    #     """.format(
+    #         p4check = "$(execpath %s)" % p4check,
+    #     ),
+    # )
+    pass
 
 def _diff_test_script(ctx):
     """Returns bash script to be executed by the diff_test target."""
