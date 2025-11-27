@@ -37,6 +37,7 @@ cc_library(
         "@com_google_gutil//gutil:ordered_map",
         "@com_google_gutil//gutil:overload",
         "@com_google_gutil//gutil:status",
+        "@@rules_distroless++apt+bookworm_libgmp-dev-amd64_2-6.2.1-dfsg1-1.1//:libgmp"
     ],
 )
 
@@ -163,7 +164,7 @@ cc_library(
         "//p4_constraints/frontend:constraint_kind",
         "//p4_constraints/frontend:parser",
         "@com_github_p4lang_p4runtime//:p4runtime_cc_proto",
-        "@com_github_z3prover_z3//:api",
+        "@@rules_distroless++apt+bookworm_libz3-dev-amd64_4.8.12-3.1//:libz3",
         "@com_google_absl//absl/container:flat_hash_map",
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/status:statusor",
@@ -201,7 +202,7 @@ cc_test(
         "//p4_constraints/frontend:constraint_kind",
         "//p4_constraints/frontend:parser",
         "@com_github_p4lang_p4runtime//:p4runtime_cc_proto",
-        "@com_github_z3prover_z3//:api",
+        "@@rules_distroless++apt+bookworm_libz3-dev-amd64_4.8.12-3.1//:libz3",
         "@com_google_absl//absl/container:flat_hash_map",
         "@com_google_absl//absl/container:flat_hash_set",
         "@com_google_absl//absl/log:check",

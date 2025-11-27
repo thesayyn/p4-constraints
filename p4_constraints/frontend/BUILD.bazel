@@ -102,10 +102,10 @@ cc_library(
     name = "ast_constructors",
     srcs = ["ast_constructors.cc"],
     hdrs = ["ast_constructors.h"],
-    # linkopts = [
-    #     "-lgmp",
-    #     "-lgmpxx",
-    # ],
+    linkopts = [
+        "-lgmp",
+        "-lgmpxx",
+    ],
     visibility = ["//visibility:private"],
     deps = [
         ":constraint_kind",
@@ -117,7 +117,8 @@ cc_library(
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/strings:str_format",
         "@com_google_absl//absl/types:span",
-        "@com_google_gutil//gutil:status"
+        "@com_google_gutil//gutil:status",
+        "@@rules_distroless++apt+bookworm_libgmp-dev-amd64_2-6.2.1-dfsg1-1.1//:libgmp"
     ],
 )
 
